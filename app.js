@@ -27,7 +27,6 @@ app.post('/get-instagram-data', async (req, res) => {
 
     let imageUrls = [];
 
-    // Interceptar todas as requisições que retornam .jpg
     page.on('response', async (response) => {
       const url = response.url();
       if (url.endsWith('.jpg')) {
@@ -39,7 +38,6 @@ app.post('/get-instagram-data', async (req, res) => {
 
     await browser.close();
 
-    // Exibir as imagens diretamente na resposta HTML
     const imagesHtml = imageUrls.map(url => `<img src="${url}" width="200" style="margin:10px;" />`).join('');
 
     res.send(`
